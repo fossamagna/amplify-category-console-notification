@@ -1,0 +1,11 @@
+{
+  "name": "console-notification",
+  "type": "category",
+  "commands": [
+    "add",
+    "remove",
+    "version",
+    "help"
+  ],
+  "eventHandlers": []
+}

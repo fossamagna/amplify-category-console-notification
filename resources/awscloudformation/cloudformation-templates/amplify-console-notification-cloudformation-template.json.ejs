@@ -1,0 +1,127 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Amplify Console notification resource stack creation using Amplify CLI",
+    "Parameters": {
+        "env": {
+            "Type": "String"
+        },
+        "appId": {
+            "Type": "String",
+            "Description": "Amplify Application ID"
+        },
+        "function<%= props.functionName %>Arn": {
+            "Type": "String"
+        }
+    },
+    "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
+                {
+                    "Ref": "env"
+                },
+                "NONE"
+            ]
+        }
+    },
+    "Resources": {
+        "EventRule": {
+            "Type" : "AWS::Events::Rule",
+            "Properties" : {
+                "Description" : "EventRule for Amplify Console",
+                "EventPattern" : {
+                    "detail": {
+                        "appId": [
+                            {"Ref": "appId"}
+                        ],
+                        "branchName": [
+                            "main"
+                        ],
+                        "jobStatus": [
+                            "SUCCEED",
+                            "FAILED",
+                            "STARTED"
+                        ]
+                    },
+                    "detail-type": [
+                        "Amplify Deployment Status Change"
+                    ],
+                    "source": [
+                        "aws.amplify"
+                    ]
+                },
+                "State": "ENABLED",
+                "Targets": [
+                    {
+                        "Id": "AmplifyNotificationSNSTopic",
+                        "Arn": { "Ref": "SNSTopic" },
+                        "InputTransformer": {
+                            "InputPathsMap" : {"appId":"$.detail.appId","branch":"$.detail.branchName","jobId":"$.detail.jobId","region":"$.region","status":"$.detail.jobStatus"},
+                            "InputTemplate" : "\"Build notification from the AWS Amplify Console for app: https://<branch>.<appId>.amplifyapp.com/. Your build status is <status>. Go to https://console.aws.amazon.com/amplify/home?region=<region>#<appId>/<branch>/<jobId> to view details on your build. \""
+                        }
+                    }
+                ]
+              }
+        },
+        "EventTopicPolicy": {
+            "Type": "AWS::SNS::TopicPolicy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": { "Service": "events.amazonaws.com" },
+                    "Action": "sns:Publish",
+                    "Resource": "*"
+                  }
+                ]
+              },
+              "Topics": [ { "Ref": "SNSTopic" } ]
+            }
+        },
+        "SNSTopic": {
+            "Type" : "AWS::SNS::Topic",
+            "Properties": {
+                "DisplayName": "amplfy-console-notification",
+                "Subscription": [
+                    {
+                        "Endpoint": { "Ref": "function<%= props.functionName %>Arn" },
+                        "Protocol": "lambda"
+                    }
+                ],
+                "TopicName": "amplify-console-notification"
+            }
+        },
+        "LambdaPermission" : {
+            "Type" : "AWS::Lambda::Permission",
+            "Properties" : {
+                "Action" : "lambda:InvokeFunction",
+                "FunctionName" : { "Ref": "function<%= props.functionName %>Arn" },
+                "Principal" : "sns.amazonaws.com",
+                "SourceArn" : { "Ref" : "SNSTopic" }
+            }
+        }
+    },
+    "Outputs": {
+        "SNSTopicArn": {
+            "Value": {
+                "Ref": "SNSTopic"
+            }
+        },
+        "SNSTopicName": {
+            "Value": {"Fn::GetAtt": ["SNSTopic", "TopicName"]}
+        },
+        "EventRuleId": {
+            "Value": {
+                "Ref": "EventRule"
+            }
+        },
+        "EventRuleArn": {
+            "Value": {"Fn::GetAtt": ["EventRule", "Arn"]}
+        },
+        "Region": {
+            "Value": {
+                "Ref": "AWS::Region"
+            }
+        }
+    }
+}

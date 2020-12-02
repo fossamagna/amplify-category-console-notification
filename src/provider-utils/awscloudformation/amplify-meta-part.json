@@ -1,0 +1,28 @@
+,
+  "consolenotification": {
+    "slack": {
+      "service": "AmplifyConsoleNotification",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "sender",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ],
+      "output": {
+        "EventRuleId": "amplify-boyaki-production-34650-consolen-EventRule-XVU0F96TP9UF",
+        "SNSTopicArn": "arn:aws:sns:ap-northeast-1:847790860507:amplify-console-notification",
+        "Region": "ap-northeast-1",
+        "EventRuleArn": "arn:aws:events:ap-northeast-1:847790860507:rule/amplify-boyaki-production-34650-consolen-EventRule-XVU0F96TP9UF",
+        "SNSTopicName": "amplify-console-notification"
+      },
+      "lastPushTimeStamp": "2020-11-20T01:10:08.424Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-boyaki-production-34650-deployment/amplify-cfn-templates/consolenotification/template.json",
+        "logicalId": "consolenotificationslack"
+      }
+    }
+  }
