@@ -1,0 +1,27 @@
+<%= props.topLevelComment %>
+
+const axios = require("axios");
+
+class SlackMessageSender {
+  sendMessage(record) {
+    const slackHookUrl = process.env.WEBHOOK_URL;
+    const body = {
+      text: record.Sns.Message
+    };
+    return axios.post(slackHookUrl, body);
+  }
+}
+
+async function postMessage(record) {
+  const sender = new SlackMessageSender();
+  return sender.sendMessage(record);
+}
+
+exports.handler = async (event) => {
+  try {
+    await Promise.all(event.Records.map(postMessage));
+  } catch (err) {
+    console.log(err);
+    return err;
+  }
+};
