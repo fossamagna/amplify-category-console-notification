@@ -49,12 +49,24 @@ function copyCfnTemplate(
       dir: pluginDir,
       template: `resources/awscloudformation/cloudformation-templates/${templateFileName}`,
       target: `${targetDir}/${category}/slack/slack-cloudformation-template.json`,
+      paramsFile: path.join(targetDir, category, 'slack', 'parameters.json'),
     },
   ];
 
+  const params = {
+    appId: getAppId(context)
+  }
+
   // copy over the files
   // @ts-ignore
-  return context.amplify.copyBatch(context, copyJobs, options);
+  return context.amplify.copyBatch(context, copyJobs, options, false, params);
+}
+
+function getAppId(context: $TSContext) {
+  const meta = context.amplify.getProjectMeta();
+  if (meta.providers && meta.providers.awscloudformation) {
+    return meta.providers.awscloudformation.AmplifyAppId;
+  }
 }
 
 async function addTrigger(context: $TSContext): Promise<string> {
