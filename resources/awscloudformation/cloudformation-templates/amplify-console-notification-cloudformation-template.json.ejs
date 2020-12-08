@@ -53,11 +53,7 @@
                 "Targets": [
                     {
                         "Id": "AmplifyNotificationSNSTopic",
-                        "Arn": { "Ref": "SNSTopic" },
-                        "InputTransformer": {
-                            "InputPathsMap" : {"appId":"$.detail.appId","branch":"$.detail.branchName","jobId":"$.detail.jobId","region":"$.region","status":"$.detail.jobStatus"},
-                            "InputTemplate" : "\"Build notification from the AWS Amplify Console for app: https://<branch>.<appId>.amplifyapp.com/. Your build status is <status>. Go to https://console.aws.amazon.com/amplify/home?region=<region>#<appId>/<branch>/<jobId> to view details on your build. \""
-                        }
+                        "Arn": { "Ref": "SNSTopic" }
                     }
                 ]
               }
