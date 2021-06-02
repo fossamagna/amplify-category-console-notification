@@ -1,6 +1,6 @@
 {
   "name": "amplify-category-console-notification",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Amplify plugin to add notifications to Slack for ther build result from AWS Amplify Console.",
   "license": "Apache-2.0",
   "main": "lib/index.js",
