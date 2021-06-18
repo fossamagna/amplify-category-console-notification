@@ -20,6 +20,7 @@ class SlackMessageSender {
     const jobUrl = `https://console.aws.amazon.com/amplify/home?region=${region}#${appId}/${branchName}/${jobId}`;
     const emoji = statusToEmoji[jobStatus] || '';
     return {
+      text: `AWS Amplify Console Build ${jobStatus} (${branchName})`,
       blocks: [
         {
           type: "section",
