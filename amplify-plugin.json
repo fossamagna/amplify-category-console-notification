@@ -5,6 +5,7 @@
     "add",
     "remove",
     "version",
+    "override",
     "help"
   ],
   "eventHandlers": []

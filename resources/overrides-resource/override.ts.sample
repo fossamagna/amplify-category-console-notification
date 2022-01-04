@@ -1,0 +1,5 @@
+import { AmplifyConsoleNotificationStackTemplate } from 'amplify-category-console-notification';
+
+export function override(resources: AmplifyConsoleNotificationStackTemplate) {
+    
+}

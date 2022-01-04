@@ -1,5 +1,6 @@
 import { $TSContext } from 'amplify-cli-core';
 import * as path from 'path';
+export * from "./amplify-cli-extensibility-helper/types";
 
 export async function executeAmplifyCommand(context: $TSContext) {
   const commandsDirPath = path.normalize(path.join(__dirname, 'commands'));
