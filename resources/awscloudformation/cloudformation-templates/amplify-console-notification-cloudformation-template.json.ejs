@@ -77,14 +77,50 @@
         "SNSTopic": {
             "Type" : "AWS::SNS::Topic",
             "Properties": {
-                "DisplayName": "amplfy-console-notification",
+                "DisplayName": {
+                    "Fn::If": [
+                        "ShouldNotCreateEnvResources",
+                        "amplfy-console-notification",
+                        {
+    
+                            "Fn::Join": [
+                                "",
+                                [
+                                    "amplfy-console-notification",
+                                    "-",
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                },
                 "Subscription": [
                     {
                         "Endpoint": { "Ref": "function<%= props.functionName %>Arn" },
                         "Protocol": "lambda"
                     }
                 ],
-                "TopicName": "amplify-console-notification"
+                "TopicName": {
+                    "Fn::If": [
+                        "ShouldNotCreateEnvResources",
+                        "amplfy-console-notification",
+                        {
+    
+                            "Fn::Join": [
+                                "",
+                                [
+                                    "amplfy-console-notification",
+                                    "-",
+                                    {
+                                        "Ref": "env"
+                                    }
+                                ]
+                            ]
+                        }
+                    ]
+                }
             }
         },
         "LambdaPermission" : {
