@@ -1,5 +1,5 @@
 {
-  "name": "console-notification",
+  "name": "consolenotification",
   "type": "category",
   "commands": [
     "add",

@@ -74,8 +74,8 @@ The following table lists the current set of commands supported by the Amplify C
 
 | Command              | Description |
 | --- | --- |
-| amplify console-notification add | Takes you through steps in the CLI to add some resources for notifications to your backend. |
-| amplify console-notification remove | Removes resources for notifications from your local backend. The resources are removed from the cloud on the next push command. |
+| amplify consolenotification add | Takes you through steps in the CLI to add some resources for notifications to your backend. |
+| amplify consolenotification remove | Removes resources for notifications from your local backend. The resources are removed from the cloud on the next push command. |
 
 <!-- ROADMAP -->
 ## Roadmap
