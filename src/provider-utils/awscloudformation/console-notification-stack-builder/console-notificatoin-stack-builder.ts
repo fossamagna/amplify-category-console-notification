@@ -1,7 +1,7 @@
 import * as cdk from '@aws-cdk/core';
 import { Rule } from '@aws-cdk/aws-events';
 import { SnsTopic } from '@aws-cdk/aws-events-targets';
-import { Function } from '@aws-cdk/aws-lambda';
+import { Function, CfnPermission } from '@aws-cdk/aws-lambda';
 import { Topic } from '@aws-cdk/aws-sns';
 import { LambdaSubscription } from "@aws-cdk/aws-sns-subscriptions";
 import { AmplifyStackTemplate, Template } from 'amplify-cli-core';
@@ -33,18 +33,35 @@ export class AmplifyConsoleNotificationStack extends cdk.Stack implements Amplif
 
   generateStackResources = async () => {
     this.topic = new Topic(this, 'SNSTopic', {
-      displayName: "amplfy-console-notification",
-      topicName: "amplify-console-notification",
+      displayName: cdk.Fn.join("", [
+        "amplify-console-notification",
+        "-",
+        cdk.Fn.ref("env")
+      ]),
+      topicName: cdk.Fn.join("", [
+        "amplify-console-notification",
+        "-",
+        cdk.Fn.ref("env")
+      ]),
     });
 
     const fn = Function.fromFunctionArn(this, 'LambdaFunction', cdk.Fn.ref(`function${this._options.sendToSlackFunctionName}Arn`));
     this.topic.addSubscription(new LambdaSubscription(fn));
 
+    const cfnPermission = new CfnPermission(this, 'LambdaPermission', {
+      action: "lambda:InvokeFunction",
+      functionName: fn.functionName,
+      principal: "sns.amazonaws.com",
+      sourceArn: this.topic.topicArn
+    });
+
     this.eventRule = new Rule(this, 'EventRule', {
       description: 'EventRule for Amplify Console',
       eventPattern: {
         detail: {
-          appId: cdk.Fn.ref('appId'),
+          appId: [
+            cdk.Fn.ref('appId'),
+          ],
           branchName: [
             cdk.Fn.ref('env'),
           ],
