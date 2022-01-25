@@ -9,7 +9,7 @@ import { migrateResourceToSupportOverride } from './migrate-override-resource';
  * returns true if check goes through, false if cancelled
  */
 export const checkConsoleNotificationResourceMigration = async (context: $TSContext, resourceName: string, isUpdate: boolean): Promise<boolean> => {
-  const cliState = new ConsoleNotificationInputState(resourceName);
+  const cliState = new ConsoleNotificationInputState(context, resourceName);
   if (!cliState.cliInputFileExists()) {
     printer.debug("cli-inputs.json doesn't exist");
     // put spinner here

@@ -14,7 +14,7 @@ import {
 } from 'amplify-cli-core';
 import { printer, formatter } from 'amplify-prompts';
 import { ConsoleNotificationInputState } from '../console-notification-inputs-manager/console-notification-input-state';
-import { ConsoleNotificationStackOptions } from '../service-walkthrough-types/console-notification-user-input-types';
+import { ConsoleNotificationStackOptions } from '../service-walkthrough-types/amplifyConsoleNotification-user-input-types';
 import { getAppId } from '../utils/get-app-id';
 import { AmplifyConsoleNotificationStack } from './console-notificatoin-stack-builder';
 import { category } from '../../../constants';
@@ -125,7 +125,7 @@ export class AmplifyConsoleNotificationTransform extends AmplifyCategoryTransfor
   }
 
   private generateStackOptions(context: $TSContext): ConsoleNotificationStackOptions {
-    const cliState = new ConsoleNotificationInputState(this.resourceName);
+    const cliState = new ConsoleNotificationInputState(context, this.resourceName);
     const input = cliState.getCLIInputPayload();
     return {
       appId: getAppId(context)!,

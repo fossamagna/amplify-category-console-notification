@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "clean": "rimraf ./lib"
+    "clean": "rimraf ./lib",
+    "generateSchemas": "ts-node ./scripts/generateApiSchemas.ts"
   },
   "dependencies": {
     "@aws-amplify/cli-extensibility-helper": "^2.2.1",
@@ -27,8 +28,9 @@
     "@types/fs-extra": "^9.0.13",
     "@types/inquirer": "^7.3.1",
     "@types/uuid": "^8.3.0",
-    "amplify-cli-core": "^2.3.0",
+    "amplify-cli-core": "^2.4.8",
     "rimraf": "^3.0.2",
+    "ts-node": "^10.4.0",
     "typescript": "^4.1.2"
   },
   "keywords": [

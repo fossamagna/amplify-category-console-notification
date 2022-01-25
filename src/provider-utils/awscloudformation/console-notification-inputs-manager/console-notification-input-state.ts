@@ -5,19 +5,21 @@ import {
   pathManager,
   CLIInputSchemaValidator,
   CategoryInputState,
+  $TSContext,
 } from 'amplify-cli-core';
 import { category } from '../../../constants';
-import { ConsoleNotificationCLIInputs } from '../service-walkthrough-types/console-notification-user-input-types';
+import { ConsoleNotificationCLIInputs } from '../service-walkthrough-types/amplifyConsoleNotification-user-input-types';
 
 export class ConsoleNotificationInputState extends CategoryInputState {
-
+  #context: $TSContext;
   #cliInputsFilePath: string; //cli-inputs.json (output) filepath
   #category: string; //category of the resource
   #service: string; //AWS service for the resource
   #buildFilePath: string;
 
-  constructor(resourceName: string) {
+  constructor(context: $TSContext, resourceName: string) {
     super(resourceName);
+    this.#context = context;
     this.#category = category
     this.#service = "AmplifyConsoleNotification";
     const projectBackendDirPath = pathManager.getBackendDirPath();
@@ -29,7 +31,7 @@ export class ConsoleNotificationInputState extends CategoryInputState {
     return JSONUtilities.readJson<ConsoleNotificationCLIInputs>(this.#cliInputsFilePath, { throwIfNotExist: true })!;
   }
 
-  async saveCLIInputPayload(cliInputs: any): Promise<void> {
+  async saveCLIInputPayload(cliInputs: ConsoleNotificationCLIInputs): Promise<void> {
     if (await this.isCLIInputsValid(cliInputs)) {
       fs.ensureDirSync(path.join(pathManager.getBackendDirPath(), this.#category, this._resourceName));
       JSONUtilities.writeJson(this.#cliInputsFilePath, cliInputs);
@@ -37,7 +39,7 @@ export class ConsoleNotificationInputState extends CategoryInputState {
   }
 
   isCLIInputsValid(cliInputs: any): Promise<boolean> {
-    const schemaValidator = new CLIInputSchemaValidator(this.#service, this.#category, 'ConsoleNotificationCLIInputs');
+    const schemaValidator = new CLIInputSchemaValidator(this.#context, this.#service, this.#category, 'ConsoleNotificationCLIInputs');
     return schemaValidator.validateInput(JSON.stringify(cliInputs));
   }
 

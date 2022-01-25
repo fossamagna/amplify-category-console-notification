@@ -3,6 +3,9 @@ import { Options } from "..";
 import * as path from 'path';
 import inquirer from 'inquirer';
 import { v4 as uuid } from 'uuid';
+import { ConsoleNotificationInputState } from "../console-notification-inputs-manager/console-notification-input-state";
+import { generateConsoleNotificationStackTemplate } from "../utils/generate-console-notification-stack-template";
+import { ConsoleNotificationCLIInputs } from "../service-walkthrough-types/amplifyConsoleNotification-user-input-types";
 
 const templateFileName = 'amplify-console-notification-cloudformation-template.json.ejs';
 
@@ -16,7 +19,15 @@ export async function createWalkthrough(context: $TSContext, category: string, o
   const functionName = await addTrigger(context);
   options.functionName = functionName;
 
-  await copyCfnTemplate(context, category, options);
+  const resourceName = 'slack';
+  const cliInputsState =  new ConsoleNotificationInputState(context, resourceName);
+  const cliInputs: ConsoleNotificationCLIInputs = {
+    version: 1,
+    sendToSlackFuncton: functionName
+  };
+  await cliInputsState.saveCLIInputPayload(cliInputs);
+
+  await generateConsoleNotificationStackTemplate(context, resourceName);
 
   const backendConfigs = {
     service: options.service,
@@ -31,7 +42,7 @@ export async function createWalkthrough(context: $TSContext, category: string, o
       }
     ],
   };
-  await context.amplify.updateamplifyMetaAfterResourceAdd(category, 'slack', backendConfigs);
+  await context.amplify.updateamplifyMetaAfterResourceAdd(category, resourceName, backendConfigs);
 }
 
 function copyCfnTemplate(

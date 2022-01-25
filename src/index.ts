@@ -19,12 +19,12 @@ export async function handleAmplifyEvent(context: $TSContext, args: any) {
 }
 
 export async function transformCategoryStack(context: $TSContext, resource: IAmplifyResource): Promise<void> {
-  if (canResourceBeTransformed(resource.resourceName)) {
+  if (canResourceBeTransformed(context, resource.resourceName)) {
     generateConsoleNotificationStackTemplate(context, resource.resourceName);
   }
 }
 
-function canResourceBeTransformed(resourceName: string) {
-  const resourceInputState = new ConsoleNotificationInputState(resourceName);
+function canResourceBeTransformed(context: $TSContext, resourceName: string) {
+  const resourceInputState = new ConsoleNotificationInputState(context, resourceName);
   return resourceInputState.cliInputFileExists();
 }

@@ -4,7 +4,7 @@ import * as fs from 'fs-extra';
 import { $TSObject, JSONUtilities, NotInitializedError, pathManager } from 'amplify-cli-core';
 import { printer } from 'amplify-prompts';
 import { category } from '../../../constants';
-import { ConsoleNotificationCLIInputs } from '../service-walkthrough-types/console-notification-user-input-types';
+import { ConsoleNotificationCLIInputs } from '../service-walkthrough-types/amplifyConsoleNotification-user-input-types';
 
 export const migrateResourceToSupportOverride = async (resourceName: string) => {
   printer.debug('Starting Migration Process');
@@ -23,6 +23,7 @@ export const migrateResourceToSupportOverride = async (resourceName: string) => 
   const functionName = functionParam.replace(/^function/, '').replace(/Arn$/, '');
 
   const cliInputs: ConsoleNotificationCLIInputs = {
+    version: 1,
     sendToSlackFuncton: functionName
   };
   const cliInputsPath = path.join(resourceDirPath, 'cli-inputs.json');

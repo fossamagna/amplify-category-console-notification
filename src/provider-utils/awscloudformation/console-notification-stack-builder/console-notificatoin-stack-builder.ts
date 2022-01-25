@@ -5,7 +5,7 @@ import { Function, CfnPermission } from '@aws-cdk/aws-lambda';
 import { Topic } from '@aws-cdk/aws-sns';
 import { LambdaSubscription } from "@aws-cdk/aws-sns-subscriptions";
 import { AmplifyStackTemplate, Template } from 'amplify-cli-core';
-import { ConsoleNotificationStackOptions } from '../service-walkthrough-types/console-notification-user-input-types';
+import { ConsoleNotificationStackOptions } from '../service-walkthrough-types/amplifyConsoleNotification-user-input-types';
 import { AmplifyConsoleNotificationStackTemplate } from '../../../amplify-cli-extensibility-helper/types';
 
 const CFN_TEMPLATE_FORMAT_VERSION = '2010-09-09';
