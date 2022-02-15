@@ -1,4 +1,5 @@
-import { $TSContext } from "amplify-cli-core";
+import { $TSContext, AmplifyCategories, AmplifySupportedService } from "amplify-cli-core";
+import { FunctionParameters, FunctionTemplate, FunctionTriggerParameters, LambdaLayer } from 'amplify-function-plugin-interface';
 import { Options } from "..";
 import * as path from 'path';
 import inquirer from 'inquirer';
@@ -13,7 +14,8 @@ const templateFileName = 'amplify-console-notification-cloudformation-template.j
  * @param options The options for Amplify Console Notification
  */
 export async function createWalkthrough(context: $TSContext, category: string, options: Options) {
-  const functionName = await addTrigger(context);
+  //const functionName = await addTrigger(context);
+  const functionName = await addNewLambdaFunction(context);
   options.functionName = functionName;
 
   await copyCfnTemplate(context, category, options);
@@ -67,6 +69,32 @@ function getAppId(context: $TSContext) {
   if (meta.providers && meta.providers.awscloudformation) {
     return meta.providers.awscloudformation.AmplifyAppId;
   }
+}
+
+async function addNewLambdaFunction(context: $TSContext): Promise<string> {
+  const params: Partial<FunctionParameters> = {
+    // functionTemplate: {
+    //   sourceFiles: [],
+    //   sourceRoot: ""
+    //   //parameters: {
+    //     //path,
+    //     //expressPath: formatCFNPathParamsForExpressJs(path),
+    //   //},
+    // },
+    defaultRuntime: 'nodejs',
+    template: "resolver"
+  };
+
+  const resourceName = await context.amplify.invokePluginMethod(context, AmplifyCategories.FUNCTION, undefined, 'add', [
+    context,
+    'awscloudformation',
+    AmplifySupportedService.LAMBDA,
+    params,
+  ]);
+
+  context.print.success(`Successfully added resource ${resourceName} locally`);
+
+  return resourceName as string;
 }
 
 async function addTrigger(context: $TSContext): Promise<string> {
