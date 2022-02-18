@@ -9,7 +9,7 @@
     "url": "https://github.com/fossamagna/amplify-category-console-notification/issues"
   },
   "author": "MURAKAMI Masahiko <fossamagna2@gmail.com>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "private": true,
   "workspaces": {
     "packages": [
@@ -20,6 +20,7 @@
     "lerna": "^4.0.0"
   },
   "scripts": {
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "clean": "lerna run clean"
   }
 }

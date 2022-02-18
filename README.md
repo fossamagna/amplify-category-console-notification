@@ -50,7 +50,7 @@ Later, input your Incoming Webhook URL when prompt to input webhook from amplify
 
 1. Install NPM packages
    ```sh
-   npm install -g amplify-category-console-notification
+   npm install -g amplify-category-console-notification amplify-slack-nodejs-function-template-provider
    ```
 2. Enable this plugin
    ```sh
@@ -63,9 +63,8 @@ Later, input your Incoming Webhook URL when prompt to input webhook from amplify
 ```bash
 $ amplify console-notification add
 Using service: AmplifyConsoleNotification, provided by: awscloudformation
-? Input function name in order to send message to Slack. Sender
+? Provide an AWS Lambda function name: SendToSlack
 ? Input Web hook URL of Slack. https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
-Successfully added resource Sender locally
 ```
 
 ## Commands Summary

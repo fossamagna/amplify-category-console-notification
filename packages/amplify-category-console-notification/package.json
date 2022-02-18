@@ -7,7 +7,8 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fossamagna/amplify-category-console-notification.git"
+    "url": "git+https://github.com/fossamagna/amplify-category-console-notification.git",
+    "directory": "packages/amplify-category-console-notification"
   },
   "scripts": {
     "build": "tsc",
@@ -15,7 +16,6 @@
   },
   "dependencies": {
     "amplify-function-plugin-interface": "^1.9.4",
-    "inquirer": "^7.3.3",
     "uuid": "^8.3.1"
   },
   "devDependencies": {

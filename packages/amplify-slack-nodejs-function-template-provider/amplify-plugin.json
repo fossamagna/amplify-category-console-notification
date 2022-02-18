@@ -1,0 +1,19 @@
+{
+  "name": "functionTemplate",
+  "type": "util",
+  "commands": [],
+  "eventHandlers": [],
+  "functionTemplate": {
+    "conditions": {
+      "provider": "awscloudformation",
+      "services": ["Lambda"],
+      "runtime": "nodejs"
+    },
+    "templates": [
+      {
+        "name": "Amplify Console Build notification to Slack using Incoming Webhook",
+        "value": "webhook"
+      }
+    ]
+  }
+}
