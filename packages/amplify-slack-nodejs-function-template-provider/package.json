@@ -1,0 +1,40 @@
+{
+  "name": "amplify-slack-nodejs-function-template-provider",
+  "version": "0.1.0",
+  "description": "\"Node.js Lambda function templates for Slack.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fossamagna/amplify-category-console-notification.git",
+    "directory": "packages/amplify-slack-nodejs-function-template-provider"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf ./lib"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.1.2"
+  },
+  "author": {
+    "name": "Masahiko Murakami",
+    "email": "fossamagna2@gmail.com",
+    "url": "https://fossamagna.github.io/"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "amplify-cli-core": "^1.9.0",
+    "amplify-function-plugin-interface": "^1.9.4",
+    "enquirer": "^2.3.6"
+  },
+  "keywords": [
+    "aws",
+    "amplify",
+    "lambda",
+    "nodejs",
+    "slack",
+    "webhook"
+  ]
+}
