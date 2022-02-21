@@ -28,6 +28,6 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: yarn
-      - run: yarn publish
+      - run: yarn publish:from-git
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

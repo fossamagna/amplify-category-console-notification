@@ -1,4 +1,5 @@
 {
+  "version": "0.0.0",
   "name": "amplify-category-console-notification",
   "description": "amplify-category-console-notification",
   "repository": {
@@ -21,6 +22,8 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "clean": "lerna run clean"
+    "clean": "lerna run clean",
+    "version": "lerna version",
+    "publish:from-git": "lerna publish from-git"
   }
 }
