@@ -24,6 +24,6 @@
     "build": "lerna run build",
     "clean": "lerna run clean",
     "version": "lerna version",
-    "publish:from-git": "lerna publish from-git"
+    "publish:from-git": "lerna publish from-git --yes"
   }
 }
