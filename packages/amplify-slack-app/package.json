@@ -1,0 +1,39 @@
+{
+  "name": "amplify-slack-app",
+  "version": "1.0.0",
+  "description": "Slack App for AWS Amplify",
+  "main": "lib/app.js",
+  "types": "lib/app.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fossamagna/amplify-category-console-notification.git",
+    "directory": "packages/amplify-slack-app"
+  },
+  "author": {
+    "name": "Masahiko Murakami",
+    "email": "fossamagna2@gmail.com",
+    "url": "https://fossamagna.github.io/"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@aws-sdk/client-amplify": "^3.50.0",
+    "@slack/bolt": "^3.9.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.92",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf ./lib"
+  },
+  "keywords": [
+    "aws",
+    "amplify",
+    "lambda",
+    "nodejs",
+    "slack",
+    "bot"
+  ]
+}

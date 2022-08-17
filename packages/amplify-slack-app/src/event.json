@@ -1,0 +1,22 @@
+{
+  "Records": [
+    {
+      "EventSource": "aws:sns",
+      "EventVersion": "1.0",
+      "EventSubscriptionArn": "arn:aws:sns:ap-northeast-1:123456789012:amplify-appId_dev:3b84ba66-f0a2-4320-87d6-a01f8674974e",
+      "Sns": {
+        "Type": "Notification",
+        "MessageId": "86886283-6134-460c-a0bf-e96404da803d",
+        "TopicArn": "arn:aws:sns:ap-northeast-1:123456789012:amplify-appId_dev",
+        "Subject": null,
+        "Message": "\"Build notification from the AWS Amplify Console for app: https://dev.appId.amplifyapp.com/. Your build status is SUCCEED. Go to https://console.aws.amazon.com/amplify/home?region=ap-northeast-1#appId/dev/1 to view details on your build. \"",
+        "Timestamp": "2019-10-24T06:33:19.479Z",
+        "SignatureVersion": "1",
+        "Signature": "signature",
+        "SigningCertUrl": "https://sns.ap-northeast-1.amazonaws.com/SimpleNotificationService-xxx.pem",
+        "UnsubscribeUrl": "https://sns.ap-northeast-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:ap-northeast-1:123456789012:amplify-appId_dev:3b84ba66-f0a2-4320-87d6-a01f8674974e",
+        "MessageAttributes": {}
+      }
+    }
+  ]
+}
