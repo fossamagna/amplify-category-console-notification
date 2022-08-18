@@ -36,5 +36,6 @@
     "nodejs",
     "slack",
     "webhook"
-  ]
+  ],
+  "gitHead": "1de4fc6c367241e001f6e1c3f0242a214e6bc6d9"
 }
