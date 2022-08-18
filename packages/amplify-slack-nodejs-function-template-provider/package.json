@@ -25,7 +25,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "amplify-cli-core": "^1.9.0",
+    "amplify-cli-core": "^2.4.14",
     "amplify-function-plugin-interface": "^1.9.4",
     "enquirer": "^2.3.6"
   },
