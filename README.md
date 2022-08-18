@@ -54,7 +54,7 @@ Later, input your Incoming Webhook URL when prompt to input webhook from amplify
    ```
 2. Enable this plugin
    ```sh
-   amplify plugin scan
+   amplify plugin add $(npm root -g)/amplify-category-console-notification
    ```
 
 <!-- USAGE EXAMPLES -->
