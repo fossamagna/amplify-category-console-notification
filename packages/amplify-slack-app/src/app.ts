@@ -139,6 +139,11 @@ export class AmplifyConsoleSlackApp {
     return handler(event, context, callback);
   };
 
+  createLambdaUrlHandler: Handler = async (event, context, callback) => {
+    const handler = await this.awsLambdaReceiver.start();
+    return handler(event, context, callback);
+  };
+
   crateSNSEventHandler: Handler<SNSEvent> = async (event) => {
     try {
       await Promise.all(event.Records.map(record => this.postMessage(record)));
@@ -154,6 +159,8 @@ export class AmplifyConsoleSlackApp {
         return this.crateSNSEventHandler(event, context, callback);
       } else if (this.isAPIGatewayProxyEvent(event)) {
         return this.createAPIGatewayProxyHandler(event, context, callback);
+      } else if (this.isLambdaUrlEvent(event)) {
+        return this.createLambdaUrlHandler(event, context, callback);
       } else {
         throw new Error(`event type is not implement. ${JSON.stringify(event)}`)
       }
@@ -167,5 +174,9 @@ export class AmplifyConsoleSlackApp {
   
   private isAPIGatewayProxyEvent = (event: any): event is APIGatewayProxyEvent => {
     return !!event.httpMethod
+  }
+
+  private isLambdaUrlEvent = (event: any): event is APIGatewayProxyEvent => {
+    return !event.httpMethod && event.headers && event.body
   }
 }
