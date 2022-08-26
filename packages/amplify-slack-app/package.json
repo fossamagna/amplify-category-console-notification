@@ -1,6 +1,6 @@
 {
   "name": "amplify-slack-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Slack App for AWS Amplify",
   "main": "lib/app.js",
   "types": "lib/app.d.ts",
