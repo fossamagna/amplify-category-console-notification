@@ -131,7 +131,32 @@
                 "Principal" : "sns.amazonaws.com",
                 "SourceArn" : { "Ref" : "SNSTopic" }
             }
-        }
+        }<% if (props.useFunctionUrl) { %>,
+        "FunctionUrl": {
+            "Type" : "AWS::Lambda::Url",
+            "Properties" : {
+                "AuthType" : "NONE",
+                "Cors" : {
+                    "AllowCredentials" : false,
+                    "AllowMethods" : [ "POST" ],
+                    "AllowOrigins" : [ "*" ]
+                },
+                "TargetFunctionArn" : {
+                    "Ref": "function<%= props.functionName %>Arn"
+                }
+            }
+        },
+        "PermissionForURLInvoke": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+                "Action": "lambda:InvokeFunctionUrl",
+                "FunctionName": {
+                    "Ref": "function<%= props.functionName %>Arn"
+                },
+                "Principal": "*",
+                "FunctionUrlAuthType": "NONE"
+            }
+        }<% } %>
     },
     "Outputs": {
         "SNSTopicArn": {
@@ -154,6 +179,10 @@
             "Value": {
                 "Ref": "AWS::Region"
             }
+        }<% if (props.useFunctionUrl) { %>,
+        "FunctionUrl": {
+            "Value": {"Fn::GetAtt": ["FunctionUrl", "FunctionUrl"]}
         }
+        <% } %>
     }
 }

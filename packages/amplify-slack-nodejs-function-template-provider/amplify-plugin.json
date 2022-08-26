@@ -13,6 +13,10 @@
       {
         "name": "Amplify Console Build notification to Slack using Incoming Webhook",
         "value": "webhook"
+      },
+      {
+        "name": "Slack App for Amplify Console Build notification and interactions",
+        "value": "amplifyslackapp"
       }
     ]
   }
