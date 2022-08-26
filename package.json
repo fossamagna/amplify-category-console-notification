@@ -20,7 +20,7 @@
   "scripts": {
     "build": "lerna run build",
     "clean": "lerna run clean",
-    "version": "lerna version",
+    "lerna:version": "lerna version --no-private",
     "publish:from-git": "lerna publish from-git --yes"
   }
 }
