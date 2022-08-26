@@ -1,5 +1,4 @@
 {
-  "version": "1.0.1",
   "name": "amplify-category-console-notification",
   "description": "amplify-category-console-notification",
   "repository": {
@@ -12,11 +11,9 @@
   "author": "MURAKAMI Masahiko <fossamagna2@gmail.com>",
   "license": "Apache-2.0",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "lerna": "^5.4.3"
   },
