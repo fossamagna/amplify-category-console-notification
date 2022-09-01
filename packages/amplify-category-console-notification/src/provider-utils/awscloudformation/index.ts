@@ -6,6 +6,7 @@ export interface Options {
   providerPlugin: string;
   functionName?: string;
   webhookUrl?: string;
+  useFunctionUrl?: boolean;
   depensOn?: any;
 }
 

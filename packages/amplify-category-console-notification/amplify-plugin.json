@@ -7,5 +7,7 @@
     "version",
     "help"
   ],
-  "eventHandlers": []
+  "eventHandlers": [
+    "PostPush"
+  ]
 }
