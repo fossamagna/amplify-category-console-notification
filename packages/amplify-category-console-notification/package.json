@@ -17,6 +17,7 @@
   "dependencies": {
     "amplify-cli-core": "^2.4.14",
     "amplify-function-plugin-interface": "^1.9.4",
+    "inquirer": "^7.3.3",
     "uuid": "^8.3.1"
   },
   "devDependencies": {
