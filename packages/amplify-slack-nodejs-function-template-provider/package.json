@@ -27,7 +27,8 @@
   "dependencies": {
     "amplify-cli-core": "^2.4.14",
     "amplify-function-plugin-interface": "^1.9.4",
-    "enquirer": "^2.3.6"
+    "enquirer": "^2.3.6",
+    "inquirer": "^7.3.3"
   },
   "keywords": [
     "aws",
