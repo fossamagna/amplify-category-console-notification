@@ -55,6 +55,7 @@ Later, input your Incoming Webhook URL when prompt to input webhook from amplify
 2. Enable this plugin
    ```sh
    amplify plugin add $(npm root -g)/amplify-category-console-notification
+   amplify plugin add $(npm root -g)/amplify-slack-nodejs-function-template-provider
    ```
 
 <!-- USAGE EXAMPLES -->
