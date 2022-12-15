@@ -1,6 +1,6 @@
 {
   "name": "amplify-slack-nodejs-function-template-provider",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "\"Node.js Lambda function templates for Slack.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
