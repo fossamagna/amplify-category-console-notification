@@ -32,13 +32,13 @@ oauth_config:
 settings:
   interactivity:
     is_enabled: true
-    request_url: https://xxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/bot/slack
+    request_url: https://<url-id>.lambda-url.<region>.on.aws/
   org_deploy_enabled: false
   socket_mode_enabled: false
   token_rotation_enabled: false
 ```
 
-**`request_url` is a tentative value. Rewrite this value after deploying API Gateway**
+**`request_url` is a tentative value. Rewrite this value after deploying Lambda**
 
 Click `Create`.
 
