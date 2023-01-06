@@ -27,6 +27,7 @@ export async function createWalkthrough(
   category: string,
   options: Options
 ) {
+  const { amplify } = context;
   const params = await askSlackAppType(context);
   options.useFunctionUrl = params.template === amplifySlackAppTemplateName;
 
@@ -40,6 +41,8 @@ export async function createWalkthrough(
   const resourceName = functionName; // use functionName as resourceName of consolenotification category
 
   await copyCfnTemplate(context, category, resourceName, options);
+  const envSpecificParams = { appId: getAppId(context) };
+  amplify.saveEnvResourceParameters(context, category, resourceName, envSpecificParams)
 
   const backendConfigs = {
     service: options.service,
@@ -95,13 +98,8 @@ function copyCfnTemplate(
     },
   ];
 
-  const params = {
-    appId: getAppId(context),
-  };
-
   // copy over the files
-  // @ts-ignore
-  return context.amplify.copyBatch(context, copyJobs, options, false, params);
+  return context.amplify.copyBatch(context, copyJobs, options, false);
 }
 
 function getAppId(context: $TSContext) {
